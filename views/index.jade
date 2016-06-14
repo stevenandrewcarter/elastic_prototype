@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(action='search',method='post')
+    div.input-group
+      span.input-group-addon(id='search_term_addon') Search
+      input.form-control(name='search_term', type="text", placeholder="Enter a Search Term", aria-describedby="basic-addon1")
+
+  div.list-group
+    each post in posts.hits
+      a.list-group-item(href="")
+        p.list-group-item-heading= post._source.PostHeader
+        p.list-group-item-text= post._source.AuthorName
+          each tag in post._source.Tags
+            span.badge= tag
